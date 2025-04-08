@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build:tauri": "bunx tauri build",
+    "build:vite": "vite build",
     "format": "biome check src --write",
     "lint": "npx biome lint --write ./src",
     "preview": "vite preview"
