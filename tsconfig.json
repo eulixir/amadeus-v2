@@ -9,11 +9,9 @@
     "skipLibCheck": true,
     "moduleResolution": "Bundler",
     "jsx": "react-jsx",
+    "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"]
     }
-  },
-  "exclude": [
-    "deploy/index.ts"  
-  ]
+  }
 }
