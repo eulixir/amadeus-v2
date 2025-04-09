@@ -1,30 +1,11 @@
 {
   "mobile": {
-    "frontal": [
-      "angry",
-      "bored",
-      "disappointed",
-      "formal",
-      "friendliness",
-      "happy",
-      "neutral",
-      "sad",
-      "shy",
-      "thinking",
-      "thoughtful",
-      "tsundere"
-    ],
-    "lateral": [
-      "angry",
-      "distant",
-      "friendly",
-      "happy",
-      "neutral",
-      "shy",
-      "thinking"
-    ]
+    "frontal": [],
+    "lateral": []
   },
-  "tablet": {},
+  "tablet": {
+    "lateral": []
+  },
   "desktop": {
     "lateral": {},
     "front": {}
