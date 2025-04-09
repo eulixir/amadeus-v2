@@ -1,13 +1,33 @@
 {
   "mobile": {
-    "lateral": {},
-    "front": {
-      "emotion": {}
-    }
+    "frontal": [
+      "angry",
+      "bored",
+      "disappointed",
+      "formal",
+      "friendliness",
+      "happy",
+      "neutral",
+      "sad",
+      "shy",
+      "thinking",
+      "thoughtful",
+      "tsundere"
+    ],
+    "lateral": [
+      "angry",
+      "distant",
+      "friendly",
+      "happy",
+      "neutral",
+      "shy",
+      "thinking"
+    ]
   },
+  "tablet": {},
   "desktop": {
     "lateral": {},
     "front": {}
   },
-  "format": "plataform_side_feeling_sequence.png"
+  "format": "emotion_sequence.png"
 }
