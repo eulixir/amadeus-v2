@@ -1,7 +1,10 @@
+import MatrixBackground from './components/MatrixBackground'
+
 function App() {
   return (
     <>
-      <div className="dark bg-background text-foreground min-h-screen">
+      <MatrixBackground />
+      <div className="dark bg-background/50 text-foreground min-h-screen min-w-screen">
         <h1>Amadeus</h1>
       </div>
     </>

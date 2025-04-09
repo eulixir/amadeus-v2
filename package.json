@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "dev:tauri": "bunx tauri dev",
     "build:tauri": "bunx tauri build",
     "build:vite": "vite build",
     "format": "biome check src --write",
