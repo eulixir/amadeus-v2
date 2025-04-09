@@ -1,4 +1,4 @@
-import MatrixBackground from './components/MatrixBackground'
+import MatrixBackground from './components/background'
 
 function App() {
   return (

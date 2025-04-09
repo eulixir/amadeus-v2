@@ -1,0 +1,13 @@
+{
+  "mobile": {
+    "lateral": {},
+    "front": {
+      "emotion": {}
+    }
+  },
+  "desktop": {
+    "lateral": {},
+    "front": {}
+  },
+  "format": "plataform_side_feeling_sequence.png"
+}
