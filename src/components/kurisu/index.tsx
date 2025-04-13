@@ -27,7 +27,7 @@ export function Kurisu() {
   }, [])
 
   return (
-    <div className="flex items-center justify-center pl-4 pr-4 pt-4">
+    <div className="flex items-center justify-center pl-4 pr-4 pt-4 absolute bottom-0">
       <img
         draggable="false"
         onContextMenu={e => e.preventDefault()}

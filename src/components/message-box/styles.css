@@ -1,0 +1,7 @@
+[data-radix-popper-content-wrapper] {
+  border-radius: 0 !important;
+}
+
+[role="dialog"] {
+  border-radius: 0 !important;
+} 

@@ -1,14 +1,14 @@
 import MatrixBackground from './components/background'
 import { Kurisu } from './components/kurisu'
-import { MessageArea } from './components/message-area'
+import MessageBox from './components/message-box'
 
 function App() {
   return (
     <div className="flex h-screen w-screen items-center justify-center">
       <MatrixBackground />
-      <div className="w-full h-full flex flex-col items-center justify-center">
+      <div className="w-full h-full flex items-center justify-center">
         <Kurisu />
-        <MessageArea />
+        <MessageBox />
       </div>
     </div>
   )
