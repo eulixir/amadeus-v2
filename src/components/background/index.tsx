@@ -8,8 +8,7 @@ const MatrixBackground = ({ speed = 1 }: MatrixBackgroundProps) => {
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const dropsRef = useRef<number[]>([])
   const lastTime = useRef(0)
-  const characters =
-    'アカサタナハマヤラワガザダバパイキシチニヒミリヰギジヂビピウクスツヌフムユルグズヅブプエケセテネヘメレヱゲゼデベペオコソトノホモヨロヲゴゾドボポヴッン0123456789'
+  const characters = '01'
   const fontSize = 14
 
   useEffect(() => {
@@ -78,10 +77,12 @@ const MatrixBackground = ({ speed = 1 }: MatrixBackgroundProps) => {
   }, [speed])
 
   return (
-    <canvas
-      ref={canvasRef}
-      className="fixed top-0 left-0 w-full h-full -z-10"
-    />
+    <>
+      <div className="fixed top-0 left-0 w-full h-full -z-10 bg-black">
+        <canvas ref={canvasRef} />
+      </div>
+      <div className="absolute top-0 left-0 w-full h-full -z-9 bg-black/60" />
+    </>
   )
 }
 
