@@ -9,36 +9,38 @@ import { Button } from '@/components/ui/button'
 import { useState } from 'react'
 import { Input } from '@/components/ui/input'
 import './styles.css'
+import { LuMessageCircle } from 'react-icons/lu'
+
+const MessageTrigger = () => (
+  <DrawerTrigger>
+    <div className="absolute bottom-10 right-10">
+      <LuMessageCircle className="text-white text-2xl" />
+    </div>
+  </DrawerTrigger>
+)
 
 const MessageBox = () => {
-  const [open, setOpen] = useState(true)
+  const [open, setOpen] = useState(false)
+  const [message, setMessage] = useState('')
 
   return (
     <Drawer open={open} onOpenChange={setOpen}>
-      <DrawerTrigger>
-        <div className="flex bg-white w-full h-full items-center justify-center flex-col ml-8 mr-8 rounded-lg">
-          <div className="flex flex-col items-center justify-center">
-            <p className="text-2xl font-bold">Open Drawer</p>
-          </div>
-        </div>
-      </DrawerTrigger>
+      {!open && <MessageTrigger />}
 
-      <DrawerContent className="bg-transparent max-w-[1600px] mx-auto rounded-none">
+      <DrawerContent className="max-w-[1820px] mx-auto rounded-none">
         <div className="flex flex-col items-center justify-center w-full">
-          <DrawerHeader className="max-h-[400px] overflow-y-auto border-none w-full">
-            <p className="text-gray-300">This action cannot be undone.</p>
+          <DrawerHeader className="max-h-[400px] h-[200px] overflow-y-auto border-none w-full">
+            <p className="text-gray-200">{message}</p>
+            <p className="text-gray-400 text-center pt-8">Makise Kurisu</p>
           </DrawerHeader>
           <DrawerFooter>
-            <div className="flex  items-center justify-center">
+            <div className="flex items-center justify-center">
               <div className="flex gap-2 w-full">
                 <Input
                   placeholder="Write a message..."
-                  className="text-white placeholder:text-gray-300"
+                  className="text-gray-400 placeholder:text-gray-400"
                 />
                 <Button variant="outline">Submit</Button>
-                <Button onClick={() => setOpen(false)} variant="outline">
-                  Close
-                </Button>
               </div>
             </div>
           </DrawerFooter>

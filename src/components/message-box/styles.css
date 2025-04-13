@@ -1,7 +1,9 @@
 [data-radix-popper-content-wrapper] {
   border-radius: 0 !important;
+  border: 1px solid #ddd;
 }
 
 [role="dialog"] {
-  border-radius: 0 !important;
-} 
+  border: none;
+  background-color: #0a0b0b;
+}

@@ -27,16 +27,14 @@ export function Kurisu() {
   }, [])
 
   return (
-    <div className="flex items-center justify-center pl-4 pr-4 pt-4 absolute bottom-0">
+    <div className="flex items-center justify-center absolute bottom-0 left-0 right-0">
       <img
         draggable="false"
         onContextMenu={e => e.preventDefault()}
         src={imagePath}
         alt="Kurisu"
-        className="object-contain"
+        className="object-contain max-h-[90vh]"
         style={{
-          width:
-            size === 'mobile' ? '200px' : size === 'tablet' ? '300px' : '400px',
           userSelect: 'none',
           pointerEvents: 'none',
         }}

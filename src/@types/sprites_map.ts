@@ -30,7 +30,7 @@ export const SEQUENCES = [1, 2, 3] as const
 
 export const BREAKPOINTS = {
   mobile: 0,
-  tablet: 768,
+  tablet: 380,
   desktop: 1024,
 } as const
 
