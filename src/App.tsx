@@ -1,13 +1,18 @@
-import MatrixBackground from './components/MatrixBackground'
+// import MatrixBackground from './components/background'
+import { Kurisu } from './components/kurisu'
+import MessageBox from './components/message-box'
+import { MessageProvider } from './contexts/MessageContext'
 
 function App() {
   return (
-    <>
-      <MatrixBackground />
-      <div className="dark bg-background/50 text-foreground min-h-screen min-w-screen">
-        <h1>Amadeus</h1>
+    <MessageProvider>
+      <div className="flex h-screen w-screen items-center justify-center">
+        {/* <MatrixBackground /> */}
+
+        <Kurisu />
+        <MessageBox />
       </div>
-    </>
+    </MessageProvider>
   )
 }
 
