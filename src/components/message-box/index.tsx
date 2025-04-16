@@ -29,7 +29,7 @@ export function MessageBox() {
   useEffect(() => {
     const initChat = async () => {
       const response = await initChatMessages()
-      setMessage(response)
+      setMessage(response.content)
     }
     initChat()
   }, [setMessage])
