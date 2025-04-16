@@ -1,3 +1,3 @@
 export async function clearMessages() {
-  localStorage.removeItem('chatHistory')
+  localStorage.removeItem('amadeusChatHistory')
 }

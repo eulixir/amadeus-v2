@@ -23,5 +23,9 @@ export async function initChatMessages() {
     return initialMessage
   }
 
-  return chatHistory[0].content
+  const lastKurisuMessage = chatHistory.filter(
+    message => message.sender !== 'Kurisu'
+  )
+
+  return lastKurisuMessage[lastKurisuMessage.length - 1].content
 }

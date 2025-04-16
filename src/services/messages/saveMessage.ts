@@ -5,7 +5,7 @@ export async function saveMessage(message: ChatMessage) {
   const chatHistoryArray = await getMessages()
 
   chatHistoryArray.push(message)
-  localStorage.setItem('chatHistory', JSON.stringify(chatHistoryArray))
+  localStorage.setItem('amadeusChatHistory', JSON.stringify(chatHistoryArray))
 
   return chatHistoryArray
 }
