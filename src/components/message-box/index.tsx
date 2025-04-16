@@ -6,13 +6,13 @@ import {
   DrawerTrigger,
 } from '@/components/ui/drawer'
 import { Button } from '@/components/ui/button'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Input } from '@/components/ui/input'
 import Separator from '@/components/ui/separator'
 import './styles.css'
 import { LuMessageCircle } from 'react-icons/lu'
 import { useMessage } from '@/contexts/MessageContext'
-
+import { getLastKurisuMessage } from '@/services/messages/getLastKurisuMessage'
 const MessageTrigger = () => (
   <DrawerTrigger>
     <div className="absolute bottom-10 right-10">
@@ -21,9 +21,17 @@ const MessageTrigger = () => (
   </DrawerTrigger>
 )
 
-const MessageBox = () => {
+export function MessageBox() {
   const [open, setOpen] = useState(false)
   const { message, setMessage } = useMessage()
+
+  useEffect(() => {
+    const fetchLastMessage = async () => {
+      const lastKurisuMessage = await getLastKurisuMessage()
+      setMessage(lastKurisuMessage.content)
+    }
+    fetchLastMessage()
+  }, [setMessage])
 
   return (
     <Drawer open={open} onOpenChange={setOpen}>
@@ -57,5 +65,3 @@ const MessageBox = () => {
     </Drawer>
   )
 }
-
-export default MessageBox

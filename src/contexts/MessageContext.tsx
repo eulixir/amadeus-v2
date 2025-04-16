@@ -8,9 +8,7 @@ interface MessageContextType {
 const MessageContext = createContext<MessageContextType | undefined>(undefined)
 
 export function MessageProvider({ children }: { children: ReactNode }) {
-  const [message, setMessage] = useState(
-    'Hello Hintarou kun, how are you? My name is Makise Kurisu, nice to meet you!'
-  )
+  const [message, setMessage] = useState('')
 
   return (
     <MessageContext.Provider value={{ message, setMessage }}>
