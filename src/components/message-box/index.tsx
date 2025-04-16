@@ -11,8 +11,9 @@ import { Input } from '@/components/ui/input'
 import Separator from '@/components/ui/separator'
 import './styles.css'
 import { LuMessageCircle } from 'react-icons/lu'
-import { useMessage } from '@/contexts/MessageContext'
+import { useChat } from '@/contexts/ChatContext'
 import { getLastKurisuMessage } from '@/services/messages/getLastKurisuMessage'
+import { initChatMessages } from '@/services/messages/initChatMessage'
 const MessageTrigger = () => (
   <DrawerTrigger>
     <div className="absolute bottom-10 right-10">
@@ -23,7 +24,7 @@ const MessageTrigger = () => (
 
 export function MessageBox() {
   const [open, setOpen] = useState(false)
-  const { message, setMessage } = useMessage()
+  const { message, setMessage } = useChat()
 
   useEffect(() => {
     const fetchLastMessage = async () => {
@@ -31,6 +32,14 @@ export function MessageBox() {
       setMessage(lastKurisuMessage.content)
     }
     fetchLastMessage()
+  }, [setMessage])
+
+  useEffect(() => {
+    const initChat = async () => {
+      const response = await initChatMessages()
+      setMessage(response)
+    }
+    initChat()
   }, [setMessage])
 
   return (

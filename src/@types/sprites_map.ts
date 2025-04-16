@@ -47,10 +47,6 @@ export type SpritesMap = {
   side: Side
 }
 
-export const getNextSequence = (current: number): Sequence => {
-  return ((current % SEQUENCE_LIMIT) + 1) as Sequence
-}
-
 export const formatSequence = (sequence: Sequence): string => {
   return sequence.toString().padStart(2, '0')
 }

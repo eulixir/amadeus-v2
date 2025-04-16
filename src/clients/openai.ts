@@ -7,6 +7,7 @@ if (!import.meta.env.VITE_OPENAI_API_KEY) {
 
 export const openai = new OpenAI({
   apiKey: import.meta.env.VITE_OPENAI_API_KEY,
+  dangerouslyAllowBrowser: true,
 })
 
 export async function getChatCompletion(messages: ChatMessage[]) {
@@ -29,13 +30,16 @@ export async function getChatCompletion(messages: ChatMessage[]) {
     `
 
   const systemMessage: ChatMessage = {
+    id: 'system',
     role: 'system',
     content: prompt,
+    sender: 'Kurisu',
+    timestamp: new Date(),
   }
 
   try {
     const completion = await openai.chat.completions.create({
-      model: 'gpt-4o-mini',
+      model: 'gpt-3.5-turbo',
       messages: [systemMessage, ...messages],
       temperature: 0.7,
     })
