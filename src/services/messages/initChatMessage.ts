@@ -19,6 +19,5 @@ export async function initChatMessages() {
     return initialMessage
   }
 
-  // get last message of Kurisu
   return messages.filter(msg => msg.sender === 'Kurisu')[-1]
 }
