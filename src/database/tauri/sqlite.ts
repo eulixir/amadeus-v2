@@ -35,6 +35,8 @@ export const saveMessage = async (message: ChatMessage) => {
       message.side,
     ]
   )
+
+  return getMessages()
 }
 
 export const getMessages = async () => {
@@ -52,7 +54,7 @@ export const getLastMessage = async () => {
   return messages[0] || null
 }
 
-export const getLastMessageBySender = async (sender: 'Kurisu' | 'User') => {
+export const getLastMessageBySender = async (sender: 'Kurisu' | 'user') => {
   const database = await init()
   const messages = await database.select<ChatMessage[]>(
     'SELECT * FROM messages WHERE sender = ? ORDER BY timestamp DESC LIMIT 1',

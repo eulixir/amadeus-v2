@@ -9,7 +9,7 @@ export type ChatMessage = {
   content: string
   timestamp: Date
   role: 'system' | 'user' | 'assistant'
-  sender: 'Kurisu' | 'User'
+  sender: 'Kurisu' | 'user'
   emotion?: FrontalEmotion | LateralEmotion
   side?: Side
 }

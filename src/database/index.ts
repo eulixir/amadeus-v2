@@ -11,6 +11,6 @@ const db = isTauri() ? tauriDb : webDb
 export const saveMessage = (message: ChatMessage) => db.saveMessage(message)
 export const getMessages = () => db.getMessages()
 export const getLastMessage = () => db.getLastMessage()
-export const getLastMessageBySender = (sender: 'Kurisu' | 'User') =>
+export const getLastMessageBySender = (sender: 'Kurisu' | 'user') =>
   db.getLastMessageBySender(sender)
 export const clearMessages = () => db.clearMessages()

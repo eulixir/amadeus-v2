@@ -1,10 +1,10 @@
-import { saveMessage, getLastMessage } from '@/database'
+import { saveMessage, getMessages } from '@/database'
 import type { ChatMessage } from '@/@types/chatHistory'
 
 export async function initChatMessages() {
-  const lastMessage = await getLastMessage()
+  const messages = await getMessages()
 
-  if (!lastMessage) {
+  if (!messages.length) {
     const initialMessage: ChatMessage = {
       id: crypto.randomUUID(),
       sender: 'Kurisu',
@@ -19,5 +19,6 @@ export async function initChatMessages() {
     return initialMessage
   }
 
-  return lastMessage
+  // get last message of Kurisu
+  return messages.filter(msg => msg.sender === 'Kurisu')[-1]
 }

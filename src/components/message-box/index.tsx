@@ -13,6 +13,9 @@ import './styles.css'
 import { LuMessageCircle } from 'react-icons/lu'
 import { useChat } from '@/contexts/ChatContext'
 import { initChatMessages } from '@/services/messages/initChatMessage'
+import { getChatCompletion } from '@/clients/openai'
+import { saveMessage } from '@/database'
+import type { ChatMessage } from '@/@types/chatHistory'
 
 const MessageTrigger = () => (
   <DrawerTrigger>
@@ -25,14 +28,31 @@ const MessageTrigger = () => (
 export function MessageBox() {
   const [open, setOpen] = useState(false)
   const { message, setMessage } = useChat()
+  const [answer, setAnswer] = useState('')
 
   useEffect(() => {
     const initChat = async () => {
       const response = await initChatMessages()
-      setMessage(response.content)
+      setMessage(response?.content || '')
     }
     initChat()
   }, [setMessage])
+
+  async function handleSubmit() {
+    const message: ChatMessage = {
+      id: 'user',
+      timestamp: new Date(),
+      sender: 'user',
+      role: 'user',
+      content: answer,
+    }
+
+    const messages = await saveMessage(message)
+
+    const response = await getChatCompletion(messages)
+
+    setMessage(response)
+  }
 
   return (
     <Drawer open={open} onOpenChange={setOpen}>
@@ -56,8 +76,11 @@ export function MessageBox() {
                 <Input
                   placeholder="Write a message..."
                   className="text-gray-400 placeholder:text-gray-400"
+                  onChange={e => setAnswer(e.target.value)}
                 />
-                <Button variant="outline">Submit</Button>
+                <Button variant="outline" onClick={handleSubmit}>
+                  Submit
+                </Button>
               </div>
             </div>
           </DrawerFooter>
