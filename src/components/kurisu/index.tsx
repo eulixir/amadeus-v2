@@ -1,14 +1,19 @@
-import type { FrontalEmotion, Side, SpriteSize } from '@/@types/sprites_map'
-import { getSpriteSize } from '@/@types/sprites_map'
-
+import type {
+  FrontalEmotion,
+  LateralEmotion,
+  Side,
+  SpriteSize,
+} from '@/@types/spritesMap'
+import { getSpriteSize } from '@/@types/spritesMap'
+import { useChat } from '@/contexts/ChatContext'
 import { useEffect, useState } from 'react'
 
 export function Kurisu() {
-  const [emotion, setEmotion] = useState<FrontalEmotion>('shy')
+  const { emotion, side } = useChat()
+
   const [size, setSize] = useState<SpriteSize>(() =>
     getSpriteSize(window.innerWidth)
   )
-  const [side, setSide] = useState<Side>('lateral')
 
   const sequence = Math.floor(Math.random() * 3) + 1
 
@@ -44,7 +49,7 @@ export function Kurisu() {
 }
 
 export function buildImagePath(
-  emotion: FrontalEmotion,
+  emotion: FrontalEmotion | LateralEmotion,
   size: SpriteSize,
   side: Side,
   sequence: number

@@ -47,10 +47,6 @@ export type SpritesMap = {
   side: Side
 }
 
-export const getNextSequence = (current: number): Sequence => {
-  return ((current % SEQUENCE_LIMIT) + 1) as Sequence
-}
-
 export const formatSequence = (sequence: Sequence): string => {
   return sequence.toString().padStart(2, '0')
 }
@@ -66,4 +62,14 @@ export const getSpriteSize = (width: number): SpriteSize => {
   if (width >= BREAKPOINTS.desktop) return 'desktop'
   if (width >= BREAKPOINTS.tablet) return 'tablet'
   return 'mobile'
+}
+
+export const defineSide = (emotion: string): Side => {
+  if (LATERAL_EMOTIONS.includes(emotion as LateralEmotion)) {
+    if (FRONTAL_EMOTIONS.includes(emotion as FrontalEmotion)) {
+      return Math.random() < 0.7 ? 'lateral' : 'frontal'
+    }
+    return 'lateral'
+  }
+  return 'frontal'
 }

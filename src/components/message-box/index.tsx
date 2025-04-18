@@ -4,14 +4,21 @@ import {
   DrawerFooter,
   DrawerHeader,
   DrawerTrigger,
+  DrawerTitle,
+  DrawerDescription,
 } from '@/components/ui/drawer'
 import { Button } from '@/components/ui/button'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Input } from '@/components/ui/input'
 import Separator from '@/components/ui/separator'
 import './styles.css'
 import { LuMessageCircle } from 'react-icons/lu'
-import { useMessage } from '@/contexts/MessageContext'
+import { useChat } from '@/contexts/ChatContext'
+import { initChatMessages } from '@/services/messages/initChatMessage'
+import { getChatCompletion } from '@/clients/openai'
+import { saveMessage } from '@/database'
+import type { ChatMessage } from '@/@types/chatHistory'
+import { VisuallyHidden } from '@/components/ui/visually-hidden'
 
 const MessageTrigger = () => (
   <DrawerTrigger>
@@ -21,15 +28,48 @@ const MessageTrigger = () => (
   </DrawerTrigger>
 )
 
-const MessageBox = () => {
+export function MessageBox() {
   const [open, setOpen] = useState(false)
-  const { message, setMessage } = useMessage()
+  const { message, handleSaveMessage, setMessage } = useChat()
+  const [answer, setAnswer] = useState('')
+
+  useEffect(() => {
+    const initChat = async () => {
+      const response = await initChatMessages()
+      setMessage(response?.content || '')
+    }
+    initChat()
+  }, [setMessage])
+
+  async function handleSubmit() {
+    const message: ChatMessage = {
+      id: crypto.randomUUID(),
+      timestamp: new Date(),
+      sender: 'user',
+      role: 'user',
+      content: answer,
+    }
+
+    const messages = await saveMessage(message)
+
+    const response = await getChatCompletion(messages)
+
+    handleSaveMessage(response)
+
+    setAnswer('')
+  }
 
   return (
     <Drawer open={open} onOpenChange={setOpen}>
       {!open && <MessageTrigger />}
 
       <DrawerContent className="max-w-[1820px] mx-auto rounded-none">
+        <VisuallyHidden>
+          <DrawerTitle>Chat with Kurisu</DrawerTitle>
+          <DrawerDescription>
+            A chat interface to communicate with the AI assistant Kurisu
+          </DrawerDescription>
+        </VisuallyHidden>
         <div className="flex flex-col items-center justify-center w-full">
           <DrawerHeader
             className="max-h-[400px] min-h-[150px] overflow-y-auto border-none w-10/12"
@@ -47,8 +87,11 @@ const MessageBox = () => {
                 <Input
                   placeholder="Write a message..."
                   className="text-gray-400 placeholder:text-gray-400"
+                  onChange={e => setAnswer(e.target.value)}
                 />
-                <Button variant="outline">Submit</Button>
+                <Button variant="outline" onClick={handleSubmit}>
+                  Submit
+                </Button>
               </div>
             </div>
           </DrawerFooter>
@@ -57,5 +100,3 @@ const MessageBox = () => {
     </Drawer>
   )
 }
-
-export default MessageBox
