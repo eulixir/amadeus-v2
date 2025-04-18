@@ -55,6 +55,8 @@ export function MessageBox() {
     const response = await getChatCompletion(messages)
 
     handleSaveMessage(response)
+
+    setAnswer('')
   }
 
   return (
