@@ -1,6 +1,7 @@
 import type { FrontalEmotion, LateralEmotion, Side } from '@/@types/spritesMap'
 import { createContext, useContext, useState, type ReactNode } from 'react'
 import { saveMessage } from '@/database'
+import { defineSide } from '@/@types/spritesMap'
 
 interface ChatContextType {
   message: string
@@ -36,6 +37,7 @@ export function ChatProvider({ children }: { children: ReactNode }) {
 
     setMessage(cleanedMessage)
     setEmotion(emotion)
+    setSide(defineSide(emotion))
   }
 
   return (
@@ -64,9 +66,7 @@ export function useChat() {
 }
 
 function filterMessage(message: string) {
-  console.log(message, 'message')
   const emotionMatch = message.match(/^'''([^']+)'''/)
-  console.log(emotionMatch, 'emotionMatch')
 
   if (!emotionMatch) {
     return {
@@ -74,8 +74,6 @@ function filterMessage(message: string) {
       message: message.replace(/^[^\S]+\s*/, '').trim(),
     }
   }
-
-  console.log(emotionMatch, 'emotionMatch')
 
   const emotion = emotionMatch[1] as FrontalEmotion | LateralEmotion
   const cleanedMessage = message.replace(/^'''[^']+'''/, '').trim()

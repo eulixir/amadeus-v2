@@ -4,6 +4,8 @@ import {
   DrawerFooter,
   DrawerHeader,
   DrawerTrigger,
+  DrawerTitle,
+  DrawerDescription,
 } from '@/components/ui/drawer'
 import { Button } from '@/components/ui/button'
 import { useEffect, useState } from 'react'
@@ -16,6 +18,7 @@ import { initChatMessages } from '@/services/messages/initChatMessage'
 import { getChatCompletion } from '@/clients/openai'
 import { saveMessage } from '@/database'
 import type { ChatMessage } from '@/@types/chatHistory'
+import { VisuallyHidden } from '@/components/ui/visually-hidden'
 
 const MessageTrigger = () => (
   <DrawerTrigger>
@@ -59,6 +62,12 @@ export function MessageBox() {
       {!open && <MessageTrigger />}
 
       <DrawerContent className="max-w-[1820px] mx-auto rounded-none">
+        <VisuallyHidden>
+          <DrawerTitle>Chat with Kurisu</DrawerTitle>
+          <DrawerDescription>
+            A chat interface to communicate with the AI assistant Kurisu
+          </DrawerDescription>
+        </VisuallyHidden>
         <div className="flex flex-col items-center justify-center w-full">
           <DrawerHeader
             className="max-h-[400px] min-h-[150px] overflow-y-auto border-none w-10/12"

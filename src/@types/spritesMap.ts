@@ -63,3 +63,13 @@ export const getSpriteSize = (width: number): SpriteSize => {
   if (width >= BREAKPOINTS.tablet) return 'tablet'
   return 'mobile'
 }
+
+export const defineSide = (emotion: string): Side => {
+  if (LATERAL_EMOTIONS.includes(emotion as LateralEmotion)) {
+    if (FRONTAL_EMOTIONS.includes(emotion as FrontalEmotion)) {
+      return Math.random() < 0.7 ? 'lateral' : 'frontal'
+    }
+    return 'lateral'
+  }
+  return 'frontal'
+}
