@@ -1,12 +1,12 @@
 import { getChatCompletion } from '@/clients/openai'
-import { saveMessage } from './messages/saveMessage'
+import { saveMessage } from '@/database'
 
 export async function requestAIProvider(message: string) {
   const chatHistory = await saveMessage({
     id: crypto.randomUUID(),
     role: 'user',
     content: message,
-    sender: 'User',
+    sender: 'user',
     timestamp: new Date(),
   })
 

@@ -3,8 +3,8 @@ import type {
   LateralEmotion,
   Side,
   SpriteSize,
-} from '@/@types/sprites_map'
-import { getSpriteSize } from '@/@types/sprites_map'
+} from '@/@types/spritesMap'
+import { getSpriteSize } from '@/@types/spritesMap'
 import { useChat } from '@/contexts/ChatContext'
 import { useEffect, useState } from 'react'
 

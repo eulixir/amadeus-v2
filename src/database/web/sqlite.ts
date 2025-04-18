@@ -1,6 +1,6 @@
 import type { ChatMessage } from '@/@types/chatHistory'
 
-const STORAGE_KEY = 'chat_messages'
+const STORAGE_KEY = 'chatMessages'
 
 export const saveMessage = async (message: ChatMessage) => {
   const messages = JSON.parse(

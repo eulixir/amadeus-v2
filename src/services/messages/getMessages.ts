@@ -1,10 +1,8 @@
 import type { ChatMessage } from '@/@types/chatHistory'
+import { getMessages as getMessagesFromDatabase } from '@/database'
 
 export async function getMessages(): Promise<ChatMessage[]> {
-  const chatHistory = localStorage.getItem('amadeusChatHistory')
-  const chatHistoryArray = chatHistory
-    ? (JSON.parse(chatHistory) as ChatMessage[])
-    : ([] satisfies ChatMessage[])
+  const chatHistory = await getMessagesFromDatabase()
 
-  return chatHistoryArray
+  return chatHistory
 }

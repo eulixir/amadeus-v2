@@ -1,4 +1,4 @@
-import type { FrontalEmotion, LateralEmotion, Side } from './sprites_map'
+import type { FrontalEmotion, LateralEmotion, Side } from './spritesMap'
 
 export type ChatHistory = {
   messages: ChatMessage[]

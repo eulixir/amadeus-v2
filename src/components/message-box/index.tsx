@@ -27,7 +27,7 @@ const MessageTrigger = () => (
 
 export function MessageBox() {
   const [open, setOpen] = useState(false)
-  const { message, setMessage } = useChat()
+  const { message, handleSaveMessage, setMessage } = useChat()
   const [answer, setAnswer] = useState('')
 
   useEffect(() => {
@@ -40,7 +40,7 @@ export function MessageBox() {
 
   async function handleSubmit() {
     const message: ChatMessage = {
-      id: 'user',
+      id: crypto.randomUUID(),
       timestamp: new Date(),
       sender: 'user',
       role: 'user',
@@ -51,7 +51,7 @@ export function MessageBox() {
 
     const response = await getChatCompletion(messages)
 
-    setMessage(response)
+    handleSaveMessage(response)
   }
 
   return (

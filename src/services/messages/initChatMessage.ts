@@ -1,8 +1,10 @@
-import { saveMessage, getMessages } from '@/database'
+import { saveMessage, getMessages, getLastMessageBySender } from '@/database'
 import type { ChatMessage } from '@/@types/chatHistory'
 
 export async function initChatMessages() {
   const messages = await getMessages()
+
+  const lastMessage = await getLastMessageBySender('Kurisu')
 
   if (!messages.length) {
     const initialMessage: ChatMessage = {
@@ -19,5 +21,5 @@ export async function initChatMessages() {
     return initialMessage
   }
 
-  return messages.filter(msg => msg.sender === 'Kurisu')[-1]
+  return lastMessage
 }
